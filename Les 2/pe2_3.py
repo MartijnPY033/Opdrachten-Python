@@ -1,4 +1,4 @@
-print (0 == (1 == 2))
-print (2+(3==4)+5==(7))
-print (1<-1==3>4)
+print(0 == (1 == 2))
+print(2+(3==4)+5==(7))
+print((1<-1)==(3>4)) # True geeft int 0, False geeft int 1
 
