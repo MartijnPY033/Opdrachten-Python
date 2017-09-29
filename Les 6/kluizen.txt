@@ -3,3 +3,7 @@
 3; welkom
 4; sneller
 5; proberen
+6; hallo
+7; hi hi
+8; bv
+9; ghoi

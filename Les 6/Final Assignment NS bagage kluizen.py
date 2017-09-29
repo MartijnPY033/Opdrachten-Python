@@ -1,20 +1,22 @@
-
-def toon_aantal_kluizen_vrij():  # toont aantal vrije kluizen
+import time
+def toon_aantal_kluizen_vrij():
+    'toont aantal vrije kluizen'
     beschikbaar = 12 - len(aantal)  # 12 kluizen in totaal min het aantal dat al in gebruik is (leest uit file)
     if beschikbaar <= 0:
-        vrijKluis = 'er zijn geen kluizen meer vrij'  # als beschikbaar 0 is, dan zijn er geen kluizen meer
+        vrijKluis = 'Er zijn geen kluizen meer vrij'  # als beschikbaar 0 is, dan zijn er geen kluizen meer
     elif beschikbaar == 1:
-        vrijKluis = 'er is nog 1 kluis beschikbaar' # 1 kluis over
+        vrijKluis = 'Er is nog 1 kluis beschikbaar' # 1 kluis over
     else:
         vrijKluis = ('Er zijn {} kluizen beschikbaar'.format(beschikbaar)) # kluizen die beschikbaar zijn > 0
 
-    return vrijKluis  # returned het resultaat
+    return vrijKluis  # returned het resultaat in vrijKluis
 
 
 def nieuwe_kluis():
+    'geeft nieuwe kluizen uit'
     kluisnummers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  # lijst met alle kluisnummers
     bezet = []  # nieuwe lijst met de bezette kluizen
-    kluizen = open('kluizen.txt', 'r+')
+    kluizen = open('kluizen.txt', 'r+') #lezen en schrijven
     aantal = kluizen.readlines()
     for lijn in aantal:
         nummers = lijn.split('; ')  # split de regels in kluizen.txt en maakt een lijst met elke regel erin.
@@ -37,6 +39,7 @@ def nieuwe_kluis():
 
 
 def kluis_openen():
+    'opent kluizen'
     kluizen = open('kluizen.txt', 'r+')
     aantal = kluizen.readlines()
     kluisNum = eval(input('geef je kluisnummer: '))  # kluisNum invoeren
@@ -57,18 +60,20 @@ def kluis_openen():
 kluizen = open('kluizen.txt', 'r+')
 aantal = kluizen.readlines()
 
-def trigger_functie(nummer):  # hiermee roep ik de juiste functie aan bij de keuze
-    if nummer == 1:
+def trigger_functie(nummer):
+    'Roept de functies aan op basis van het keuze menu, op nummer'
+    if nummer == '1':
         print(toon_aantal_kluizen_vrij())
-    if nummer == 2:
+    if nummer == '2':
         print(nieuwe_kluis())
-    if nummer == 3:
+    if nummer == '3':
         print(kluis_openen())
-    if nummer == 4:
+    if nummer == '4':
         pass
 
-
 while True:
+    time.sleep(2)
+    'Keuzemenu'
     print('') # print lege lijn tussen keuzemenu en functie output
     print("""1.Ik wil weten hoeveel kluizen nog vrij zijn.
 2.Ik wil een nieuwe kluis.
@@ -76,14 +81,19 @@ while True:
 4.Ik geef mijn kluis terug.
 5.Stop""")
     print('')
-    nummer = int(input("Kies een nummer tussen de 1 en de 5" '\n'))
+    nummer = str(input("Kies een nummer tussen de 1 en de 5" '\n')) #input in str
     trigger_functie(nummer)
-    if nummer == 5:
+    if nummer == '1' or nummer == '2' or nummer == '3' or nummer == '4':
+        continue
+    if nummer == '5':
         print('Het programma word afgesloten...')
+        time.sleep(1)
         break
     else:
+        print('Probeer opnieuw')
         continue
 
+'roept functie aan'
 trigger_functie(nummer)
 
 kluizen.close()  # text file word gesloten
